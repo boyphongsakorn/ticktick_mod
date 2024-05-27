@@ -1,0 +1,22 @@
+{
+    "title": "TickTickMod",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configure TickTickMod",
+                "description": "Set up the TickTickMod integration by providing your credentials.",
+                "data": {
+                    "client_id": "Client ID",
+                    "client_secret": "Client Secret",
+                    "email": "Email Address",
+                    "password": "Password",
+                    "access_token": "Access Token (JSON format)"
+                }
+            }
+        },
+        "error": {
+            "invalid_json": "Invalid JSON format. Please enter a valid JSON dictionary.",
+            "unknown": "An unknown error occurred."
+        }
+    }
+}
