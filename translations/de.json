@@ -1,0 +1,22 @@
+{
+    "title": "TickTickMod",
+    "config": {
+        "step": {
+            "user": {
+                "title": "TickTickMod konfigurieren",
+                "description": "Richten Sie die TickTickMod-Integration ein, indem Sie Ihre Zugangsdaten angeben.",
+                "data": {
+                    "client_id": "Client-ID",
+                    "client_secret": "Client-Geheimnis",
+                    "email": "E-Mail-Adresse",
+                    "password": "Passwort",
+                    "access_token": "Zugriffstoken (JSON-Format)"
+                }
+            }
+        },
+        "error": {
+            "invalid_json": "Ungültiges JSON-Format. Bitte geben Sie ein gültiges JSON-Diktat ein.",
+            "unknown": "Ein unbekannter Fehler ist aufgetreten."
+        }
+    }
+}
