@@ -1113,12 +1113,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         return False
     try:
         hass.data.setdefault(DOMAIN, {})[entry.entry_id] = ticktick_client
-        #coordinator = TickTickDataUpdateCoordinator(hass, ticktick_client)
-        #await coordinator._async_update_data()
+        # coordinator = TickTickDataUpdateCoordinator(hass, ticktick_client)
+        # await coordinator._async_update_data()
 
-        #entry.runtime_data = coordinator
+        # entry.runtime_data = coordinator
 
-        #await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+        # await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     except Exception as e:
         _LOGGER.debug(e)
 
