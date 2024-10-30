@@ -7,7 +7,7 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
-from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
+# from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.helpers.selector import TextSelector, TextSelectorConfig, TextSelectorType
 
 from .const import DOMAIN, CONF_CLIENT_ID, CONF_CLIENT_SECRET, CONF_ACCESS_TOKEN
@@ -22,12 +22,12 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
         vol.Required(CONF_CLIENT_SECRET): TextSelector(
             TextSelectorConfig(type=TextSelectorType.PASSWORD),
         ),
-        vol.Required(CONF_EMAIL): TextSelector(
-            TextSelectorConfig(type=TextSelectorType.EMAIL),
-        ),
-        vol.Required(CONF_PASSWORD): TextSelector(
-            TextSelectorConfig(type=TextSelectorType.PASSWORD),
-        ),
+        # vol.Required(CONF_EMAIL): TextSelector(
+        #     TextSelectorConfig(type=TextSelectorType.EMAIL),
+        # ),
+        # vol.Required(CONF_PASSWORD): TextSelector(
+        #     TextSelectorConfig(type=TextSelectorType.PASSWORD),
+        # ),
         vol.Optional(CONF_ACCESS_TOKEN): TextSelector(
             TextSelectorConfig(type=TextSelectorType.TEXT),
         )
@@ -55,8 +55,11 @@ class TickTickModConfigFlow(ConfigFlow, domain=DOMAIN):
                 # For now, simply return a successful result without performing any authentication
                 await self.async_set_unique_id("ticktick_mod")
                 self._abort_if_unique_id_configured()
+                # return self.async_create_entry(
+                #     title = user_input[CONF_EMAIL], data=user_input
+                # )
                 return self.async_create_entry(
-                    title = user_input[CONF_EMAIL], data=user_input
+                    title = user_input, data=user_input
                 )
             except json.JSONDecodeError as e:
                 _LOGGER.exception("Invalid JSON format: %s", e)

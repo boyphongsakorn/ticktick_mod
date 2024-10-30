@@ -18,7 +18,8 @@ from urllib3.util.retry import Retry
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, Platform
+# from homeassistant.const import CONF_EMAIL, CONF_PASSWORD, Platform
+from homeassistant.const import Platform
 from .const import DOMAIN, CONF_CLIENT_ID, CONF_CLIENT_SECRET, CONF_ACCESS_TOKEN
 from .coordinator import TickTickDataUpdateCoordinator
 
@@ -1075,9 +1076,10 @@ class TickTickClient:
                         del self.state[primary_key][middle_key]
                         return deleted
 
-def _create_ticktick_client(email, password, client_id, client_secret, access_token):
+# def _create_ticktick_client(email, password, client_id, client_secret, access_token):
+def _create_ticktick_client(client_id, client_secret, access_token):
     auth_client = OAuth2(client_id=client_id, client_secret=client_secret, redirect_uri="http://127.0.0.1:8080", access_token=access_token)
-    ticktick_client = TickTickClient(email, password, auth_client)
+    ticktick_client = TickTickClient(auth_client)
     # ticktick_client.sync()
     return ticktick_client
 
@@ -1086,21 +1088,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     client_id = entry.data[CONF_CLIENT_ID]
     client_secret = entry.data[CONF_CLIENT_SECRET]
-    email = entry.data[CONF_EMAIL]
-    password = entry.data[CONF_PASSWORD]
+    # email = entry.data[CONF_EMAIL]
+    # password = entry.data[CONF_PASSWORD]
     access_token = entry.data.get(CONF_ACCESS_TOKEN)
 
     # Initialize your TickTick client
     try:
         ticktick_client = await hass.async_add_executor_job(
-            _create_ticktick_client, email, password, client_id, client_secret, access_token
+            # _create_ticktick_client, email, password, client_id, client_secret, access_token
+            _create_ticktick_client, client_id, client_secret, access_token
         )
         
         _LOGGER.debug("Authentication successful")
         _LOGGER.debug(client_id)
         _LOGGER.debug(client_secret)
-        _LOGGER.debug(email)
-        _LOGGER.debug(password)
+        # _LOGGER.debug(email)
+        # _LOGGER.debug(password)
         _LOGGER.debug(access_token)
         
         # Log the projects

@@ -8,8 +8,6 @@
                 "data": {
                     "client_id": "Client ID",
                     "client_secret": "Client Secret",
-                    "email": "Email Address",
-                    "password": "Password",
                     "access_token": "Access Token (JSON format)"
                 }
             }
